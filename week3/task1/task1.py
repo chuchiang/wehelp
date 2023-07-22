@@ -16,11 +16,8 @@ with open("attraction.csv","w",encoding="utf-8",newline="") as file:#寫入檔�
         latitude=record["latitude"]
         file_urls = record["file"].split("https")
         first_jpg = "https"+file_urls[1]
-        for item in clist:
-            address = item["address"]
-            middle_chars = address[5:8] # 取得中間的三個字元
-        writer.writerow([stitle,middle_chars,longitude,latitude,first_jpg])
-
+        address = record["address"][5:8]
+        writer.writerow([stitle,address,longitude,latitude,first_jpg])
 #將名稱列表出來
 alist=data["result"]["results"]#一個列表 中括號 列表結束
 with open("mrt.csv","w",encoding="utf-8",newline="") as archives:#寫入檔案
@@ -39,7 +36,7 @@ with open("mrt.csv","w",encoding="utf-8",newline="") as archives:#寫入檔案
 
     # 找出相同MRT值的stitle值
     for mrt, stitle_list in mrt_dict.items():
-        if len(stitle_list) > 1:
+        if len(stitle_list) >= 1:
             writer.writerow([mrt]+stitle_list)
         
 
