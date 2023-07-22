@@ -1,4 +1,4 @@
-
+     
 #串接、擷取公開資料
 import urllib.request as request #網路連線載入模組     
 import json#為了要做json資料解析 載入json模組
