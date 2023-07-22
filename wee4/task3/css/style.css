@@ -1,0 +1,348 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+.wrap {
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5px 15px 5px;
+}
+
+.desktop_menu {
+    display: flex;
+}
+
+.desktop_menu li {
+    color: black;
+}
+
+.desktop_menu a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+
+.desktop_menu a:hover {
+    background: gray;
+    color: white;
+}
+
+.mobile_menu {
+    display: none;
+}
+
+/* 隱藏 checkbox */
+input {
+    display: none;
+}
+
+
+.banner {
+    background-color: rgb(32, 178, 170);
+}
+
+.banner h2 {
+    font-size: 2em;
+    padding: 105px 0 105px 0;
+    text-align: center;
+}
+
+.content {
+    width: 1200px;
+    margin-top: 10px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.thead {
+    display: flex;
+}
+
+.img-box1 {
+    display: flex;
+    background-color: rgb(32, 178, 170);
+    margin: 10px;
+    flex: auto;
+    align-items: center;
+}
+
+.img-box1 p {
+    padding-left: 5px;
+}
+
+.img-box1 img {
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.tfoot {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-box2 {
+    margin: 10px;
+    flex: auto;
+    width: 15%;
+    position: relative;
+
+}
+
+
+.headline2 {
+
+
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: rgb(32, 178, 170);
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    align-items: center;
+
+}
+
+.more {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+    background-color: gray;
+    padding: 10px;
+    width: 10%;
+
+}
+
+
+@media (max-width: 1200px) {
+    .content {
+        width: 90%;
+    }
+
+    .thead {
+        flex-wrap: wrap;
+    }
+
+    .img-box1 {
+        width: 45%;
+    }
+
+    .tfoot {
+        flex-wrap: wrap;
+    }
+
+    .img-box2 {
+        width: 20%;
+    }
+
+
+}
+
+@media (max-width:600px) {
+    .content {
+        width: 90%;
+    }
+
+    .thead {
+        flex-wrap: wrap;
+    }
+
+    .img-box1 {
+        width: 100%;
+    }
+
+    .tfoot {
+        flex-wrap: wrap;
+    }
+
+    .img-box2 {
+        width: 100%;
+    }
+
+    .img-box2 img {
+        width: 100%;
+    }
+
+    .mobile_menu {
+        display: block;
+        position: absolute;
+        right: 0;
+    }
+
+    .header {
+        align-items: center;
+    }
+
+    .desktop_menu {
+        max-height: 0;
+        /*隱藏選單高度*/
+        overflow: hidden;
+        transition: .5s;
+        background-color: bisque;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        box-shadow: -10px 0 20px -5px gray;
+        /*陰影*/
+        z-index: 10;
+    }
+
+    .desktop_menu li {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .desktop_menu a {
+        display: block;
+    }
+
+    input:checked~.desktop_menu {
+        max-height: 100%;
+    }
+}

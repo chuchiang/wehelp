@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week1_完成 RWD 網頁切版</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <h1>My Website</h1>
+            </div>
+            <div class="mobile_menu">
+                <label for="hamburger"><img src="img/hamburger.png" alt=" menu" width="30" height="30">
+                </label>
+            </div>
+            <input type="checkbox" id="hamburger">
+
+
+            <ul class="desktop_menu">
+                <li><a href="#">Item1</a></li>
+                <li><a href="#">Item2</a></li>
+                <li><a href="#">Item3</a></li>
+                <li><a href="#">Item4</a></li>
+            </ul>
+        </div>
+        <div class="banner">
+            <h2>Welcome to MyHome</h2>
+        </div>
+        <div class="content">
+            <div class="thead">
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+            </div>
+            <div class="tfoot">
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+
+                let headline = document.getElementsByClassName("headline");
+                let imgUrl1 = document.getElementsByClassName("imgStyle");
+                let headline2 = document.getElementsByClassName("headline2");
+                let imgUrl2 = document.getElementsByClassName("imgStyle2");
+
+                // 3張圖片
+                for (let i = 0; i < headline.length; i++) {  //資料一個個拉出來
+                    let headlines = headline[i];
+                    let product = data["result"]["results"][i]["stitle"];
+                    let newStitle = document.createElement("newStitle");
+                    newStitle.appendChild(document.createTextNode(product));
+                    headlines.appendChild(newStitle);
+
+                    let file_urls = data["result"]["results"][i]["file"].split("https");
+                    let first_jpg = "https" + file_urls[1]
+                    imgUrl1[i].src = first_jpg;// first_jpg抓到照片後，要再丟回去給原本的imgbox1，更新為src屬性
+
+                }
+
+                // 12張圖片
+                for (let i = 0; i < headline2.length; i++) {  //資料一個個拉出來
+                    let headline2s = headline2[i];
+                    let product2 = data["result"]["results"][i + 3]["stitle"];
+                    let newStitle2 = document.createElement("newStitle2");
+                    newStitle2.appendChild(document.createTextNode(product2));
+                    headline2s.appendChild(newStitle2);
+
+                    let file_urls2 = data["result"]["results"][i + 3]["file"].split("https");
+                    let first_jpg2 = "https" + file_urls2[1]
+                    imgUrl2[i].src = first_jpg2;// first_jpg抓到照片後，要再丟回去給原本的imgbox1，更新為src屬性
+                }
+
+            });
+
+    </script>
+
+</body>
+
+</html>
