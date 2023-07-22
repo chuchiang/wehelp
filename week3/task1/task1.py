@@ -30,6 +30,8 @@ with open("mrt.csv","w",encoding="utf-8",newline="") as archives:#寫入檔案
         attractions = place["stitle"]
 
         # 檢查MRT值是否在字典中，如果不在，則創建一個新的鍵值對
+        if mrt==None:
+            mrt="無"
         if mrt not in mrt_dict:
             mrt_dict[mrt] = []#MRT字典=[]空物件
         mrt_dict[mrt].append(attractions)#將stitle值添加到對應的MRT值的列表中
