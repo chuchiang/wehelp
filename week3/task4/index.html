@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>week1_完成 RWD 網頁切版</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <h1>My Website</h1>
+            </div>
+            <div class="mobile_menu">
+                <label for="hamburger"><img src="img/hamburger.png" alt=" menu" width="30" height="30">
+                </label>
+            </div>
+            <input type="checkbox" id="hamburger">
+
+
+            <ul class="desktop_menu">
+                <li><a href="#">Item1</a></li>
+                <li><a href="#">Item2</a></li>
+                <li><a href="#">Item3</a></li>
+                <li><a href="#">Item4</a></li>
+            </ul>
+        </div>
+        <div class="banner">
+            <h2>Welcome to MyHome</h2>
+        </div>
+        <div class="content">
+            <div class="thead">
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+                <div class="img-box1">
+                    <img class="imgStyle" alt="picture">
+                    <span class="headline"></span>
+                </div>
+            </div>
+            <div class="tfoot">
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+                <div class="img-box2">
+                    <img class="imgStyle2" alt="picture2">
+                    <span class="headline2"></span>
+                </div>
+            </div>
+            <div class="content2Style">
+                <div class="content2"></div>
+            </div>
+            <div id="moreBtn" onclick="appendMoreContent();"> Load More</div>
+            <div id="moreBtn2" onclick="appendMoreContent2();"> Load More</div>
+            <div id="moreBtn3" onclick="appendMoreContent3();"> Load More</div>
+            <div id="moreBtn4" onclick="appendMoreContent4();"> Load More</div>
+
+        </div>
+
+    </div>
+    <script>
+
+        function Content() {
+
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+
+                    let headline = document.getElementsByClassName("headline");
+                    let imgUrl1 = document.getElementsByClassName("imgStyle");
+                    let headline2 = document.getElementsByClassName("headline2");
+                    let imgUrl2 = document.getElementsByClassName("imgStyle2");
+                    // 3張圖片
+                    for (let i = 0; i < headline.length; i++) {  //資料一個個拉出來
+                        let headlines = headline[i];
+                        let product = data["result"]["results"][i]["stitle"];
+                        let newStitle = document.createElement("newStitle");
+                        newStitle.appendChild(document.createTextNode(product));
+                        headlines.appendChild(newStitle);
+
+                        let file_urls = data["result"]["results"][i]["file"].split("https");
+                        let first_jpg = "https" + file_urls[1]
+                        imgUrl1[i].src = first_jpg;// first_jpg抓到照片後，要再丟回去給原本的imgbox1，更新為src屬性
+                    }
+                    // 12張圖片
+                    for (let i = 0; i < headline2.length; i++) {  //資料一個個拉出來
+                        let headline2s = headline2[i];
+                        let product2 = data["result"]["results"][i + 3]["stitle"];
+                        let newStitle2 = document.createElement("newStitle2");
+                        newStitle2.appendChild(document.createTextNode(product2));
+                        headline2s.appendChild(newStitle2);
+
+                        let file_urls2 = data["result"]["results"][i + 3]["file"].split("https");
+                        let first_jpg2 = "https" + file_urls2[1]
+                        imgUrl2[i].src = first_jpg2;// first_jpg抓到照片後，要再丟回去給原本的imgbox1，更新為src屬性
+                    }
+
+                })
+            document.getElementById("moreBtn").style.display = "block";
+            document.getElementById("moreBtn2").style.display = "none";
+            document.getElementById("moreBtn3").style.display = "none";
+            document.getElementById("moreBtn4").style.display = "none";
+        }
+        Content();
+
+
+        // 綁定按鈕點擊事件1
+        let moreBtn = document.querySelector(".moreBtn");
+        moreBtn.addEventListener("click", appendMoreContent);
+
+        // 動態新增更多內容的函數
+        function appendMoreContent() {
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // 獲取JSON資料中的"data"陣列
+                    let dataArray = data["result"]["results"]
+
+                    // 生成下一組12個圖片和標題
+                    let content2 = document.querySelector(".content2");
+                    for (let i = 15; i < 27; i++) {
+                        let imgBox = document.createElement("div")// 新增元素 div
+                        imgBox.classList.add("img-box2")//增加img-box 
+
+                        let imageElement = document.createElement("img");
+                        imageElement.classList.add("imgStyle2");
+                        imageElement.alt = "picture2";//alt 属性可設置或者返回圖片的 alt 属性值
+                        let imgUrl = "https" + dataArray[i].file.split("https")[1];
+                        imageElement.src = imgUrl;
+                        imgBox.appendChild(imageElement);
+
+                        let spanElement = document.createElement("span");
+                        spanElement.classList.add("headline2");
+                        let title = dataArray[i].stitle;
+                        spanElement.textContent = title;
+
+                        imgBox.appendChild(spanElement);
+                        content2.appendChild(imgBox);
+
+                    }
+
+                });
+            document.getElementById("moreBtn").style.display = "none";
+            document.getElementById("moreBtn2").style.display = "block";
+            document.getElementById("moreBtn3").style.display = "none";
+            document.getElementById("moreBtn4").style.display = "none";
+
+        }
+        // 綁定按鈕點擊事件2
+        let moreBtn2 = document.querySelector(".moreBtn2");
+        moreBtn2.addEventListener("click", appendMoreContent2);
+
+        // 動態新增更多內容的函數
+        function appendMoreContent2() {
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // 獲取JSON資料中的"data"陣列
+                    let dataArray = data["result"]["results"]
+
+                    // 生成下一組12個圖片和標題
+                    let content2 = document.querySelector(".content2");
+                    for (let i = 27; i < 39; i++) {
+                        let imgBox = document.createElement("div")// 新增元素 div
+                        imgBox.classList.add("img-box2")//增加img-box 
+
+                        let imageElement = document.createElement("img");
+                        imageElement.classList.add("imgStyle2");
+                        imageElement.alt = "picture2";//alt 属性可設置或者返回圖片的 alt 属性值
+                        let imgUrl = "https" + dataArray[i].file.split("https")[1];
+                        imageElement.src = imgUrl;
+                        imgBox.appendChild(imageElement);
+
+                        let spanElement = document.createElement("span");
+                        spanElement.classList.add("headline2");
+                        let title = dataArray[i].stitle;
+                        spanElement.textContent = title;
+
+                        imgBox.appendChild(spanElement);
+                        content2.appendChild(imgBox);
+                    }
+                });
+
+            document.getElementById("moreBtn").style.display = "none";
+            document.getElementById("moreBtn2").style.display = "none";
+            document.getElementById("moreBtn3").style.display = "block";
+            document.getElementById("moreBtn4").style.display = "none";
+        }
+        // 綁定按鈕點擊事件3
+        let moreBtn3 = document.querySelector(".moreBtn3");
+        moreBtn3.addEventListener("click", appendMoreContent3);
+
+        // 動態新增更多內容的函數
+        function appendMoreContent3() {
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // 獲取JSON資料中的"data"陣列
+                    let dataArray = data["result"]["results"]
+
+                    // 生成下一組12個圖片和標題
+                    let content2 = document.querySelector(".content2");
+                    for (let i = 39; i < 51; i++) {
+                        let imgBox = document.createElement("div")// 新增元素 div
+                        imgBox.classList.add("img-box2")//增加img-box 
+
+                        let imageElement = document.createElement("img");
+                        imageElement.classList.add("imgStyle2");
+                        imageElement.alt = "picture2";//alt 属性可設置或者返回圖片的 alt 属性值
+                        let imgUrl = "https" + dataArray[i].file.split("https")[1];
+                        imageElement.src = imgUrl;
+                        imgBox.appendChild(imageElement);
+
+                        let spanElement = document.createElement("span");
+                        spanElement.classList.add("headline2");
+                        let title = dataArray[i].stitle;
+                        spanElement.textContent = title;
+
+                        imgBox.appendChild(spanElement);
+                        content2.appendChild(imgBox);
+                    }
+                });
+            document.getElementById("moreBtn").style.display = "none";
+            document.getElementById("moreBtn2").style.display = "none";
+            document.getElementById("moreBtn3").style.display = "none";
+            document.getElementById("moreBtn4").style.display = "block";
+        }
+        // 綁定按鈕點擊事件4
+        let moreBtn4 = document.querySelector(".moreBtn4");
+        moreBtn4.addEventListener("click", appendMoreContent4);
+
+        // 動態新增更多內容的函數
+        function appendMoreContent4() {
+            fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    // 獲取JSON資料中的"data"陣列
+                    let dataArray = data["result"]["results"]
+
+                    // 生成下一組12個圖片和標題
+                    let content2 = document.querySelector(".content2");
+                    for (let i = 51; i < 100; i++) {
+                        let imgBox = document.createElement("div")// 新增元素 div
+                        imgBox.classList.add("img-box2")//增加img-box 
+
+                        let imageElement = document.createElement("img");
+                        imageElement.classList.add("imgStyle2");
+                        imageElement.alt = "picture2";//alt 属性可設置或者返回圖片的 alt 属性值
+                        let imgUrl = "https" + dataArray[i].file.split("https")[1];
+                        imageElement.src = imgUrl;
+                        imgBox.appendChild(imageElement);
+
+                        let spanElement = document.createElement("span");
+                        spanElement.classList.add("headline2");
+                        let title = dataArray[i].stitle;
+                        spanElement.textContent = title;
+
+                        imgBox.appendChild(spanElement);
+                        content2.appendChild(imgBox);
+                    }
+                });
+            document.getElementById("moreBtn").style.display = "none";
+            document.getElementById("moreBtn2").style.display = "none";
+            document.getElementById("moreBtn3").style.display = "none";
+            document.getElementById("moreBtn4").style.display = "none";
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
