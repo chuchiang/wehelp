@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><!--連到css-->
+</head>
+
+<body>
+    <form action="/signin" method="post">
+        <div class="wrap">
+            <div class="login">
+                <h2>歡迎光臨，請輸入帳號密碼</h2>
+                <h3>登入系統</h3>
+                <p>帳號<input type="text" name="account" /></p>
+                <p>密碼<input type="text" name="password" /></p>
+                <p>同意條款<input type="checkbox" name="check" id="checkbox"></p>
+                <button id="the_btn">登入</button>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename = 'script.js') }}"></script><!--連到js-->
+    </form>
+</body>
+
+</html>
