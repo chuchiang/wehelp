@@ -11,7 +11,7 @@ INSERT INTO member(name,username,password,follower_count)VALUES('kevin','service
 ![](https://hackmd.io/_uploads/BypmiUts2.png)
 
 **3-2**
-● 使⽤ SELECT 指令取得所有在 member 資料表中的會員資料。
+*使⽤ SELECT 指令取得所有在 member 資料表中的會員資料。
 ```
 SELECT*FROM member;
 ```
