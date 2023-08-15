@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"><!--連到css-->
+</head>
+
+<body>
+    <form action="/signup" method="post">
+        <div class="wrap">
+            <div class="login">
+                <h2>歡迎光臨，請註冊登入系統</h2>
+                <h3>註冊帳號</h3>
+                <p>姓名<input type="text" name="signup_name" id="text1"/></p>
+                <p>帳號<input type="text" name="signup_account" id="text2"/></p>
+                <p>密碼<input type="text" name="signup_password" id="text3"/></p>
+                <button id="register">註冊</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'signup.js') }}"></script><!--連到js-->
+    </form>
+    <form action="/signin" method="post">
+        <div class="wrap">
+            <div class="login">
+                <h3>登入系統</h3>
+                <p>帳號<input type="text" name="account" id="text4"/></p>
+                <p>密碼<input type="text" name="password" id="text5"/></p>
+                <p>同意條款<input type="checkbox" name="check" id="checkbox"></p>
+                <button id="the_btn">登入</button>
+            </div>
+        </div>
+        <script type="text/javascript" src="{{ url_for('static', filename = 'script.js') }}"></script><!--連到js-->
+    </form>
+    
+</body>
+
+</html>
