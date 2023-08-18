@@ -53,19 +53,19 @@ def replacename_taken(sql_name,sql_username):
 
 @app.route("/api/member",methods=["PATCH"])
 def apiname():
-    # 解析前端傳來的 JSON 數據
-    data = request.json
-    new_name = data.get("name")
-    session["name"] = new_name
-    sql_name=session.get("name","")
-    sql_username=session.get("account","")
-
-    # 根據需要在數據庫中更新成員的用戶名
-    # 假設更新成功後，你可以返回一個 JSON 響應來表示更新成功
-    if replacename_taken(sql_name,sql_username): 
-        sql_ok=jsonify({"ok": "true"})
-        return sql_ok
-    else:
+    try:
+        data = request.json# 解析前端傳來的 JSON 數據
+        new_name = data.get("name")
+        if len(new_name)!=0:#使用字符串長度判断
+            session["name"] = new_name
+            sql_name=session.get("name","")
+            sql_username=session.get("account","")
+            replacename_taken(sql_name,sql_username)
+            sql_ok=jsonify({"ok": "true"})
+            return sql_ok
+        else:
+            return jsonify({"error": "true"})
+    except Exception:
         return jsonify({"error": "true"})
     
 
