@@ -61,22 +61,22 @@ img{
     justify-content: space-between;
     padding: 15px 5px 15px 5px;
 }
-.desktop_menu{
+.header__deskmenu{
     display: flex;
 }
-.desktop_menu li{
+.header__deskmenu__item {
     color: black;
 }
-.desktop_menu a{
+.header__deskmenu a{
     text-decoration: none;
     color: black;
     padding: 10px;
 }
-.desktop_menu a:hover{
+.header__deskmenu a:hover{
     background: gray;
     color: white;
 }
-.mobile_menu{
+.header__mobile_menu{
     display: none;
 }
 /* 隱藏 checkbox */
@@ -99,29 +99,29 @@ input {
     margin: 0 auto;
     margin-top: 20px;
 }
-.thead{
+.content__thead{
     display: flex;
 }
-.img-box1{
+.content__thead__box1{
     display: flex;
     background-color:rgb(32,178,170);
     margin: 10px;
     flex: auto;
     align-items: center;
 }
-.img-box1 p{
+.content__thead__box1 p{
     padding-left: 5px;
 }
-.img-box1 img{
+.content__thead__box1 img{
     width: 80px;
     height: 50px;
     object-fit: cover;
 }
-.tfoot{
+.content__tfoot{
     display: flex;
     flex-wrap: wrap;
 }
-.img-box2{
+.content__tfoot__box2{
     margin: 10px;
     flex: auto;
     width: 15%;
@@ -134,7 +134,7 @@ input {
     
 }
 
-.img-box2 p{
+.content__tfoot__box2 p{
     text-align: center;
     padding: 10px 0 10px 0;
     width: 100%;
@@ -148,16 +148,16 @@ input {
     .content{
         width: 90%;
     }
-    .thead{
+    .content__thead{
         flex-wrap: wrap;
     }
-    .img-box1{
+    .content__thead__box1{
         width: 45%;
     }
-    .tfoot{
+    .content__tfoot{
         flex-wrap: wrap;
     }
-    .img-box2{
+    .content__tfoot__box2{
         width: 20%;
     }
     
@@ -168,22 +168,22 @@ input {
     .content{
         width: 90%;
     }
-    .thead{
+    .content__thead{
         flex-wrap: wrap;
     }
-    .img-box1{
+    .content__thead__box1{
         width: 100%;
     }
-    .tfoot{
+    .content__tfoot{
         flex-wrap: wrap;
     }
-    .img-box2{
+    .content__tfoot__box2{
         width: 100%;
     }
-    .img-box2 img{
+    .content__tfoot__box2 img{
         width: 100%;
     }
-    .mobile_menu{
+    .header__mbile_menu{
         display: block;
         position:absolute;
         right: 0;
@@ -192,7 +192,7 @@ input {
     .header{
         align-items: center;
     }
-    .desktop_menu{
+    .header__deskmenu{
         max-height: 0;/*隱藏選單高度*/
         overflow: hidden;
         transition: .5s;
@@ -206,11 +206,11 @@ input {
         box-shadow: -10px 0 20px -5px gray;/*陰影*/
         z-index: 10;
     }
-    .desktop_menu li{
+    .header__deskmenu__item{
         margin-top: 20px;
         text-align: center;
     } 
-   .desktop_menu a{
+   .header__deskmenu a{
     display: block;
    }
     input:checked ~ .desktop_menu {
